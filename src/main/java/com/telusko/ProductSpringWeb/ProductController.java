@@ -3,7 +3,6 @@ package com.telusko.ProductSpringWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -15,13 +14,17 @@ public class ProductController {
 
 
     @GetMapping("/allproducts")
-    public List<Product> getAllProducts() throws SQLException {
+    public List<Product> getAllProducts() {
         return ps.getAllProducts();
     }
 
     @GetMapping("/productsbyname/{name}")
-    public Product getProductsByName(@PathVariable String name){
+    public List<Product> getProductsByName(@PathVariable String name){
         return ps.getProductsByname(name);
+    }
+    @GetMapping("/productsbytype/{type}")
+    public List<Product> getProductsByType(@PathVariable String type){
+        return ps.getProductsBytype(type);
     }
 
     @PostMapping("/products")
@@ -30,9 +33,14 @@ public class ProductController {
         return "New Product Added Successfully";
         }
 
-   @GetMapping({"/products/{place}"})
-   public Product getProductByPlace(@PathVariable String place){
+   @GetMapping({"/productsbyplace/{place}"})
+   public List<Product> getProductByPlace(@PathVariable String place){
         return ps.getProductByPlace(place);
+    }
+
+    @GetMapping({"/productsbywarranty/{warranty}"})
+    public List<Product> getProductsByWarranty(@PathVariable int warranty){
+        return ps.getProductsByWarranty(warranty);
     }
 
 

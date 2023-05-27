@@ -20,15 +20,23 @@ public class ProductService {
         return db.findAll();
     }
 
-    public Product getProductsByname(String name) {
+    public List<Product> getProductsByname(String name) {
         return db.findByNameContainsIgnoreCase(name);
     }
 
-    public Product getProductByPlace(String pl){
+    public List<Product> getProductByPlace(String pl) {
         return db.findByPlaceContainsIgnoreCase(pl);
+
+
     }
 
+    public List<Product> getProductsBytype(String type) {
+        return db.findByTypeContainsIgnoreCase(type);
+    }
 
+    public List<Product> getProductsByWarranty(int warranty) {
+        return db.findByWarranty(warranty);
+    }
 }
 
 
